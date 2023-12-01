@@ -86,6 +86,7 @@ function reproducirCancionAleatoria() {
   });
 
   audioFondo.play();
+  audioFondo.volume = 0.6;
 }
 
 window.addEventListener('load', function() {
@@ -300,7 +301,7 @@ function mostrarFinJuego() {
 
     mensaje.textContent = mensajeText;
     mensaje.innerHTML +=
-      '<button class ="boton" onclick="location.reload()">Volver a Jugar</button>';
+      '<button class ="boton" onclick="volverAJugar()">Volver a Jugar</button>';
     mensaje.innerHTML +=
       '<button class ="boton" onclick="salir()">Salir</button>';
   }
@@ -383,6 +384,7 @@ function cambiarimagen() {
 }
 function volverAJugar() {
   location.reload();
+  reproducirCancionAleatoria();
 }
 div.addEventListener("mouseover", function () {
   div.style.animation = "moverBorde 1s infinite"; // Puedes ajustar la duración según tus necesidades
