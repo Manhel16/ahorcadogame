@@ -4,74 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../css/stylemenu.css" />
     <title>El ahorcado</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-        }
-
-        #contenedor {
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            text-align: center;
-        }
-
-        .titulo {
-            color: #333;
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        input {
-            margin-bottom: 10px;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
-
-        input[type="radio"] {
-            margin-right: 5px;
-        }
-
-        #btn_inicio {
-            background-color: #4caf50;
-            color: #fff;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        #btn_inicio:hover {
-            background-color: #45a049;
-        }
-    </style>
 </head>
 
 <body>
+    <img id="fondo" src="../imagenes/tumbleweed-acegif-14.gif" alt="">
+    <img src="../imagenes/pantalla del juego.png" alt="" id="imagen">
 
     <div id="contenedor">
         <h2 class="titulo">El Ahorcado</h2>
         <div>
             <form action="#" method="post">
-                <div>Nombre: <br> <input type="text" id="nombre" placeholder="nombre del juador" required></div>
+                <div>Nombre: <br> <input type="text" id="nombre" placeholder="nombre del jugador" required></div>
                 Dificultad: <br>
                 <div>Facil<input type="radio" id="facil" value="facil" name="dificultad">
                     Dificil<input type="radio" id="dificil" value="dificil" name="dificultad">
@@ -82,14 +27,14 @@
         </div>
     </div>
     <script>
-        let dificultad;
         document.getElementById("btn_inicio").addEventListener('click', function (event) {
             event.preventDefault();
 
             var nombre = document.getElementById("nombre").value;
+            var menu = document.getElementById("contenedor");
+            var imagen = document.getElementById("imagen");
 
             // Obtener el valor del radio button seleccionado
-            
             var radios = document.getElementsByName("dificultad");
             for (var i = 0; i < radios.length; i++) {
                 if (radios[i].checked) {
@@ -102,7 +47,16 @@
             if (nombre && dificultad) {
                 localStorage.setItem("nombre", nombre);
                 localStorage.setItem("dificultad", dificultad);
-                window.location.href = "index.html";
+
+                // Guardar el tiempo de inicio
+                localStorage.setItem("tiempoInicio", new Date().getTime());
+
+                menu.classList.add('movimiento');
+                imagen.classList.add('cambio');
+                setTimeout(function () {
+                    window.location.href = "index.html";
+                }, 2000);
+
             } else {
                 alert("Por favor, ingresa un nombre y selecciona una dificultad antes de iniciar.");
             }
