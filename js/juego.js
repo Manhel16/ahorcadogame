@@ -71,9 +71,7 @@ var intentosRestantes = 6;
 var canciones = [
   '../audioFondo/Doom OST - E1M1 - At Doom\'s Gate.mp3',
   '../audioFondo/Mozart - Lacrimosa.mp3',
-  '../audioFondo/PVZ2 - Dr.zombie theme.mp3',
   '../audioFondo/Vanilla Ice - Ice Ice Baby Instrumental.mp3',
-  '../audioFondo/Cheel - Blue Dreams.mp3',
   '../audioFondo/Better Call Saul Theme by Little Barrie.mp3',
   '../audioFondo/LAKEY INSPIRED - Better Days.mp3'
 ];
@@ -383,8 +381,12 @@ function cambiarimagen() {
   }
 }
 function volverAJugar() {
+  if (audioFondo) {
+    audioFondo.pause();
+    audioFondo.currentTime = 0;
+    audioFondo = null;
+  }
   location.reload();
-  reproducirCancionAleatoria();
 }
 div.addEventListener("mouseover", function () {
   div.style.animation = "moverBorde 1s infinite"; // Puedes ajustar la duración según tus necesidades
